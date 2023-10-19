@@ -1,0 +1,43 @@
+server:
+  port: 9008
+  tomcat:
+    maxConnections: 200
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: bff-scale
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB   #最大上传文件大小
+      max-request-size: 1024MB #批量最大请求大小
+
+  datasource:
+    #    username: root
+    #    password: redCAT911
+    #    url: jdbc:mysql://bj-cdb-kh3ywjky.sql.tencentcdb.com:60638/hospital?allowMultiQueries=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    username: xrTool
+    password: PH34rXcLFi8Etby7
+    url: jdbc:mysql://xxx.xxx.xxx.xxx:3306/xrtool?allowMultiQueries=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+  hikari:
+    minimum-idle: 20
+    maximum-pool-size: 50
+    connection-test-query: SELECT 1
+    max-lifetime: 1800000
+    connection-timeout: 30000
+    pool-name: DatebookHikariCP
+
+mybatis-plus:
+  mapper-locations: com/xr/demo/mapper/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.xr.demo.entity
